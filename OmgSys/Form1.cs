@@ -86,51 +86,23 @@ namespace OmgSys
             catch { MessageBox.Show("Błąd dodania obiektu"); }
 
 
-            //int wynik = Int32.Parse(numer1.Text) + Int32.Parse(numer2.Text);
-            //int wynik = soap.Add(userVal, userVal2);
-            //int wynik = 1 + 2;
             responseBox.Text = wynik.ToString();
-
-            //example insrt
-            /*
-             * odpwoiedz przechwytywana do short descrption
-             */
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void oblicz_buton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void handle_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string path = System.AppDomain.CurrentDomain.BaseDirectory;
-            DateTime nazwa_pliku = DateTime.Now;
+            
+            var directory = Environment.CurrentDirectory;
+            string strDate = DateTime.Now.ToString("MM_dd_yyyy");
             try
             {
                 //Serializacja
                 System.Xml.Serialization.XmlSerializer serializer =
                 new System.Xml.Serialization.XmlSerializer(typeof(List<COper>));
-                //COper cop2 = new COper(1, 2, "+", 3);
-                TextWriter writer = new StreamWriter(@"C:\GiT\OmegaSysRecrutTask\Dane.xml");
+                TextWriter writer = new StreamWriter(directory + "/Dane"+strDate+".xml");
+ 
                 serializer.Serialize(writer, lista_grida);
-
-                //zamykam  i wysylam plik xml
                 writer.Close();
             }
             catch
