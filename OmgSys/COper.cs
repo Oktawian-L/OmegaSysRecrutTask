@@ -8,10 +8,10 @@ namespace OmgSys
 {
     class COper
     {
-        public float argumentFirst;
-        public float argumentSecond;
-        public string operation;
-        public float response;
+        public float argumentFirst { get; set; }
+        public float argumentSecond { get; set; }
+        public string operation { get; set; }
+        public float response { get; set; }
 
         public COper()
         {

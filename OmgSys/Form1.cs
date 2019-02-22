@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -107,6 +108,24 @@ namespace OmgSys
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+           {
+                //Serializacja
+                System.Xml.Serialization.XmlSerializer serializer =
+                new System.Xml.Serialization.XmlSerializer(typeof(OmgSys.COper));
+                COper cop2 = new COper(1, 2, "+", 3);
+                TextWriter writer = new StreamWriter(@".\" + DateTime.Now.ToString() + "_.xml");
+                serializer.Serialize(writer, cop2);
+
+                //zamykam  i wysylam plik xml
+                writer.Close();
+            }
+            catch
+            { MessageBox.Show("Błąd generowania pliku"); }
         }
     }
 }
