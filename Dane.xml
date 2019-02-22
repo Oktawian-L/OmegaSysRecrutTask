@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCOper xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <COper>
+    <argumentFirst>123</argumentFirst>
+    <argumentSecond>1</argumentSecond>
+    <operation>+</operation>
+    <response>124</response>
+  </COper>
+</ArrayOfCOper>

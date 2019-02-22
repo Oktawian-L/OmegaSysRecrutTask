@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -118,20 +119,22 @@ namespace OmgSys
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //try
-           //{
+            string path = System.AppDomain.CurrentDomain.BaseDirectory;
+            DateTime nazwa_pliku = DateTime.Now;
+            try
+            {
                 //Serializacja
                 System.Xml.Serialization.XmlSerializer serializer =
                 new System.Xml.Serialization.XmlSerializer(typeof(List<COper>));
                 //COper cop2 = new COper(1, 2, "+", 3);
-                TextWriter writer = new StreamWriter(@"C:\GiT\OmegaSysRecrutTask\213.xml");
+                TextWriter writer = new StreamWriter(@"C:\GiT\OmegaSysRecrutTask\Dane.xml");
                 serializer.Serialize(writer, lista_grida);
 
                 //zamykam  i wysylam plik xml
                 writer.Close();
-            /*}
+            }
             catch
-            { MessageBox.Show("Błąd generowania pliku"); }*/
+            { MessageBox.Show("Błąd generowania pliku"); }
         }
     }
 }
