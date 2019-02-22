@@ -75,6 +75,7 @@ namespace OmgSys
 
                 dataGridView1.Rows.Add(row0);
 
+
             }
             catch { MessageBox.Show("Błąd dodania obiektu"); }
 
@@ -112,20 +113,20 @@ namespace OmgSys
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-           {
+            //try
+           //{
                 //Serializacja
                 System.Xml.Serialization.XmlSerializer serializer =
                 new System.Xml.Serialization.XmlSerializer(typeof(OmgSys.COper));
                 COper cop2 = new COper(1, 2, "+", 3);
-                TextWriter writer = new StreamWriter(@".\" + DateTime.Now.ToString() + "_.xml");
+                TextWriter writer = new StreamWriter(@"C:\GiT\OmegaSysRecrutTask\213.xml");
                 serializer.Serialize(writer, cop2);
 
                 //zamykam  i wysylam plik xml
                 writer.Close();
-            }
+            /*}
             catch
-            { MessageBox.Show("Błąd generowania pliku"); }
+            { MessageBox.Show("Błąd generowania pliku"); }*/
         }
     }
 }

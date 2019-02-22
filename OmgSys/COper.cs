@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OmgSys
 {
-    class COper
+    public class COper
     {
         public float argumentFirst { get; set; }
         public float argumentSecond { get; set; }
