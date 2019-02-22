@@ -15,6 +15,7 @@ namespace OmgSys
     {
    
         private BindingSource bindingSource1 = new BindingSource();
+        List<COper> lista_grida = new List<COper>();
 
 
         public Form1()
@@ -31,18 +32,20 @@ namespace OmgSys
             dataGridView1.Columns[1].Name = "Liczba2";
             dataGridView1.Columns[2].Name = "Operacja";
             dataGridView1.Columns[3].Name = "Wynik";
+            //lista
+            
 
         }
 
         private void submit_button_Click(object sender, EventArgs e)
         {
-           // this.output.Text = "Odpytywanie webserwisu...";
+           
             OmgSys.ServiceReference1.CalculatorSoapClient soap = new OmgSys.ServiceReference1.CalculatorSoapClient();
             //credientale
             soap.ClientCredentials.UserName.UserName = "admin";
             soap.ClientCredentials.UserName.Password = "admin";
 
-            //int userVal = int.Parse(numer1.Text);
+            
            
             int userVal = 0;
             int userVal2 = 0;
@@ -66,8 +69,10 @@ namespace OmgSys
 
             //Dodanie do grida
             COper cop = new COper(userVal, userVal2, oper.Text,wynik);
-           
-          
+            lista_grida.Add(cop);
+
+
+
             try
             {
                 //dataGridView1.Rows.Add(cop);
@@ -117,10 +122,10 @@ namespace OmgSys
            //{
                 //Serializacja
                 System.Xml.Serialization.XmlSerializer serializer =
-                new System.Xml.Serialization.XmlSerializer(typeof(OmgSys.COper));
-                COper cop2 = new COper(1, 2, "+", 3);
+                new System.Xml.Serialization.XmlSerializer(typeof(List<COper>));
+                //COper cop2 = new COper(1, 2, "+", 3);
                 TextWriter writer = new StreamWriter(@"C:\GiT\OmegaSysRecrutTask\213.xml");
-                serializer.Serialize(writer, cop2);
+                serializer.Serialize(writer, lista_grida);
 
                 //zamykam  i wysylam plik xml
                 writer.Close();
