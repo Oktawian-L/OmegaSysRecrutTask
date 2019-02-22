@@ -92,21 +92,39 @@ namespace OmgSys
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
             var directory = Environment.CurrentDirectory;
             string strDate = DateTime.Now.ToString("MM_dd_yyyy");
-            try
+
+            Stream myStream;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "XML(*.xml)|*.txt|Wszystkie pliki (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                //Serializacja
-                System.Xml.Serialization.XmlSerializer serializer =
-                new System.Xml.Serialization.XmlSerializer(typeof(List<COper>));
-                TextWriter writer = new StreamWriter(directory + "/Dane"+strDate+".xml");
- 
-                serializer.Serialize(writer, lista_grida);
-                writer.Close();
+                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                {
+                    try
+                    {
+                        //Serializacja
+                        System.Xml.Serialization.XmlSerializer serializer =
+                        new System.Xml.Serialization.XmlSerializer(typeof(List<COper>));
+
+                        TextWriter writer = new StreamWriter(directory + "/Dane" + strDate + ".xml");
+                        serializer.Serialize(writer, lista_grida);
+
+                        //zamykam  i wysylam plik xml
+                        writer.Close();
+                    }
+                    catch
+                    { MessageBox.Show("Błąd generowania pliku"); }
+                    myStream.Close();
+                }
             }
-            catch
-            { MessageBox.Show("Błąd generowania pliku"); }
+
+        
         }
     }
 }
