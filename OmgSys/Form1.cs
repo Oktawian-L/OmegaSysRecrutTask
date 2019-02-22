@@ -124,10 +124,12 @@ namespace OmgSys
 
             Stream myStream;
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            TextWriter writer;
 
             saveFileDialog1.Filter = "XML(*.xml)|*.txt|Wszystkie pliki (*.*)|*.*";
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
+            saveFileDialog1.FileName = strDate + ".xml";
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -139,8 +141,8 @@ namespace OmgSys
                         System.Xml.Serialization.XmlSerializer serializer =
                         new System.Xml.Serialization.XmlSerializer(typeof(List<COper>));
 
-                        TextWriter writer = new StreamWriter(directory + "/Dane" + strDate + ".xml");
-                        serializer.Serialize(writer, lista_grida);
+                        writer = new StreamWriter(directory + "/Dane" + strDate + ".xml");
+                        serializer.Serialize(myStream, lista_grida);
 
                         //zamykam  i wysylam plik xml
                         writer.Close();
